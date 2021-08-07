@@ -13,11 +13,8 @@ resolver:
   layout: follow-schema
   dir: ../../graph/resolver
   package: resolver
-
-models:
-  App:
-    fields:
-      blog:
-        resolver: true
+# models:
+#   Blog:
+#     model: practice_gql/graph/model.Blog
 # autobind:
-#   - "github.com/maru44/practice_gql/graph/model"
+#   - "practice_gql/graph/model"
