@@ -13,3 +13,11 @@ type Blog struct {
 	CreatedAt string  `json:"createdAt"`
 	UpdatedAt string  `json:"UpdatedAt"`
 }
+
+type NewBlog struct {
+	Slug     string  `json:"slug"`
+	Abstruct *string `json:"abstruct"`
+	Content  string  `json:"content"`
+	UserID   string  `json:"userId"`
+	IsPublic bool    `json:"isPublic"`
+}
