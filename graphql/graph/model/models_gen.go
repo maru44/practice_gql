@@ -3,7 +3,7 @@
 package model
 
 type Blog struct {
-	ID        string  `json:"id"`
+	ID        int     `json:"id"`
 	Slug      string  `json:"slug"`
 	Title     string  `json:"title"`
 	Abstruct  *string `json:"abstruct"`
@@ -15,7 +15,6 @@ type Blog struct {
 }
 
 type NewBlog struct {
-	Slug     string  `json:"slug"`
 	Abstruct *string `json:"abstruct"`
 	Content  string  `json:"content"`
 	UserID   string  `json:"userId"`

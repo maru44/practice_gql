@@ -15,7 +15,6 @@ type Query {
 }
 
 input NewBlog {
-  slug: String!
   abstruct: String
   content: String!
   userId: String!

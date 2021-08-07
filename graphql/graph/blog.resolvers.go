@@ -6,8 +6,11 @@ package graph
 import (
 	"context"
 	"fmt"
+	"log"
+	"practice_gql/gqlconv"
 	"practice_gql/graphql/graph/generated"
 	"practice_gql/graphql/graph/model"
+	"practice_gql/interfaces/database"
 )
 
 func (r *mutationResolver) CreateBlog(ctx context.Context, input model.NewBlog) (*model.Blog, error) {
@@ -15,7 +18,13 @@ func (r *mutationResolver) CreateBlog(ctx context.Context, input model.NewBlog) 
 }
 
 func (r *queryResolver) Blogs(ctx context.Context) ([]*model.Blog, error) {
-	panic(fmt.Errorf("not implemented"))
+	// panic(fmt.Errorf("not implemented"))
+	blogs, err := database.BlogAll(r.DB)
+	if err != nil {
+		log.Println(err)
+	}
+	out := gqlconv.Blogs(blogs)
+	return out, err
 }
 
 // Mutation returns generated.MutationResolver implementation.

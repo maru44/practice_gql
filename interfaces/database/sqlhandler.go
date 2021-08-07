@@ -11,7 +11,7 @@ import (
 
 const slugLetters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"
 
-func ConnectSql() *sql.DB {
+func ConnectSql() (*sql.DB, error) {
 	db, err := sql.Open(
 		"postgres",
 		fmt.Sprintf(
@@ -22,7 +22,7 @@ func ConnectSql() *sql.DB {
 	if err != nil {
 		log.Print(err)
 	}
-	return db
+	return db, err
 }
 
 func GenRandSlug(n int) string {

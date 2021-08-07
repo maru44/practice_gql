@@ -2,7 +2,7 @@ package database
 
 import (
 	"context"
-	"fmt"
+	"database/sql"
 	"practice_gql/models"
 
 	"github.com/volatiletech/null"
@@ -11,8 +11,8 @@ import (
 	_ "github.com/lib/pq"
 )
 
-func InsertBlog() {
-	db := ConnectSql()
+func InsertBlog(db *sql.DB) {
+	// db, _ := ConnectSql()
 	blog := models.Blog{
 		Slug:     GenRandSlug(8),
 		Title:    "サンプル1",
@@ -23,10 +23,8 @@ func InsertBlog() {
 	blog.Insert(context.Background(), db, boil.Infer())
 }
 
-func BlogAll() {
-	db := ConnectSql()
-	blogs, _ := models.Blogs().All(context.Background(), db)
-	for _, b := range blogs {
-		fmt.Println(b)
-	}
+func BlogAll(db *sql.DB) ([]*models.Blog, error) {
+	// db, _ := ConnectSql()
+	blogs, err := models.Blogs().All(context.Background(), db)
+	return blogs, err
 }
