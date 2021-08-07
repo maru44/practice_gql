@@ -1,0 +1,23 @@
+schema:
+  - ./*.graphql
+
+exec:
+  filename: ../../graph/generated/generated.go
+  package: generated
+
+model:
+  filename: ../../graph/model/models_gen.go
+  package: model
+
+resolver:
+  layout: follow-schema
+  dir: ../../graph/resolver
+  package: resolver
+
+models:
+  App:
+    fields:
+      blog:
+        resolver: true
+# autobind:
+#   - "github.com/maru44/practice_gql/graph/model"
