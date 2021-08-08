@@ -14,11 +14,15 @@ import (
 )
 
 func (r *mutationResolver) CreateBlog(ctx context.Context, input model.NewBlog) (*model.Blog, error) {
-	panic(fmt.Errorf("not implemented"))
+	blog := gqlconv.InsertBlog(&input) // idが0
+	fmt.Println(blog)
+	database.InsertBlog(r.DB, *blog)
+	rawOut, err := database.Get(r.DB, blog.ID)
+	out := gqlconv.Blog(rawOut)
+	return out, err
 }
 
 func (r *queryResolver) Blogs(ctx context.Context) ([]*model.Blog, error) {
-	// panic(fmt.Errorf("not implemented"))
 	blogs, err := database.BlogAll(r.DB)
 	if err != nil {
 		log.Println(err)
